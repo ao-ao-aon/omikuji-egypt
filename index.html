@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古代エジプト 恋御籤</title>
+<style>
+
+    body {
+        background-color: #081421;
+        color: #d4af37;
+
+        text-align: center;
+
+        font-family: serif;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 50px;
+
+        margin-top: 100px;
+
+        color: #d4af37;
+
+        text-shadow: 0 0 10px #8a6b16;
+    }
+
+    p {
+        font-size: 22px;
+
+        line-height: 2;
+
+        color: #e8d9a8;
+    }
+
+.stone-tablet {
+
+    width: 600px;
+
+    margin: 50px auto;
+
+    padding: 40px;
+
+    background-color: #2b241b;
+
+    border: 6px solid #d4af37;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 20px #000,
+        inset 0 0 30px #000;
+}
+
+h2 {
+
+    font-size: 30px;
+
+    color: #d4af37;
+
+    margin-bottom: 30px;
+}
+
+.relationship-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.relationship-buttons button {
+
+    background-color: #3b3020;
+
+    color: #d4af37;
+
+    border: 2px solid #d4af37;
+
+    padding: 20px;
+
+    font-size: 20px;
+
+    font-family: serif;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.relationship-buttons button:hover {
+
+    background-color: #d4af37;
+
+    color: #1a1308;
+
+    transform: scale(1.05);
+}
+#omikuji-screen {
+    display: none;
+}
+/* パピルスを並べる場所 */
+.papyrus-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-top: 40px;
+}
+
+
+/* パピルス本体 */
+.papyrus {
+
+    position: relative;
+
+    height: 180px;
+
+    background-color: #c9aa70;
+
+    color: #2b1b0e;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: serif;
+
+    font-size: 25px;
+
+    transition: 0.3s;
+
+    box-shadow:
+        5px 5px 10px #000,
+        inset 0 0 15px #8b6b3d;
+}
+
+
+/* 巻物の上部分 */
+.papyrus::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -10px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 20px;
+
+    background-color: #9c7b45;
+
+    border-radius: 50%;
+}
+
+
+/* 巻物の下部分 */
+.papyrus::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -10px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 20px;
+
+    background-color: #9c7b45;
+
+    border-radius: 50%;
+}
+
+
+/* マウスを乗せたとき */
+.papyrus:hover {
+
+    transform: translateY(-10px) scale(1.05);
+
+    box-shadow:
+        0 0 20px #d4af37,
+        inset 0 0 15px #8b6b3d;
+}
+
+
+/* ヒエログリフ */
+.papyrus-symbol {
+
+    display: block;
+
+    font-size: 55px;
+
+    margin-top: 35px;
+}
+
+
+/* 番号 */
+.papyrus-number {
+
+    display: block;
+
+    font-size: 25px;
+
+    margin-top: 15px;
+}
+#result-screen {
+    display: none;
+}
+@media screen and (max-width: 700px) {
+
+    h1 {
+        font-size: 30px;
+
+        margin-top: 40px;
+
+        padding: 0 15px;
+    }
+
+
+    p {
+        font-size: 17px;
+    }
+
+
+    .stone-tablet {
+
+        width: auto;
+
+        margin: 20px 15px;
+
+        padding: 25px 15px;
+
+        border-width: 4px;
+    }
+
+
+    h2 {
+        font-size: 24px;
+    }
+
+
+    .relationship-buttons {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .relationship-buttons button {
+
+        padding: 15px;
+
+        font-size: 18px;
+    }
+
+
+    .papyrus-container {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 15px;
+    }
+
+
+    .papyrus {
+
+        height: 150px;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+    <h1>
+        𓂀 古代エジプト 恋御籤 𓂀<br>
+        حب المنديل في مصر القديمة
+    </h1>
+
+
+    <div class="stone-tablet">
+
+
+        <!-- 関係性を選ぶ画面 -->
+        <div id="relationship-screen">
+
+            <h2>𓁹 汝の恋の状況を示せ 𓁹</h2>
+
+            <p class="question">
+                神々は汝の運命を知るため、<br>
+                現在の関係を問う。
+            </p>
+
+
+            <div class="relationship-buttons">
+
+                <button onclick="selectRelationship('恋人')">
+                    恋人
+                </button>
+
+                <button onclick="selectRelationship('失恋中')">
+                    失恋中
+                </button>
+
+                <button onclick="selectRelationship('片思い')">
+                    片思い
+                </button>
+
+                <button onclick="selectRelationship('気になる人')">
+                    気になる人
+                </button>
+
+                <button onclick="selectRelationship('元カレ/元カノ')">
+                    元カレ / 元カノ
+                </button>
+
+                <button onclick="selectRelationship('好きな人はいない')">
+                    好きな人はいない
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- おみくじ選び画面 -->
+        <div id="omikuji-screen">
+
+            <h2>𓂀 神々の神託を選べ 𓂀</h2>
+
+            <p>
+                目の前に現れた神託の中から、<br>
+                一つを選べ。
+            </p>
+
+
+            <div class="papyrus-container">
+
+                <button class="papyrus" onclick="chooseOmikuji(1)">
+                    <span class="papyrus-symbol">𓂀</span>
+                    <span class="papyrus-number">Ⅰ</span>
+                </button>
+
+                <button class="papyrus" onclick="chooseOmikuji(2)">
+                    <span class="papyrus-symbol">𓁹</span>
+                    <span class="papyrus-number">Ⅱ</span>
+                </button>
+
+                <button class="papyrus" onclick="chooseOmikuji(3)">
+                    <span class="papyrus-symbol">𓃠</span>
+                    <span class="papyrus-number">Ⅲ</span>
+                </button>
+
+                <button class="papyrus" onclick="chooseOmikuji(4)">
+                    <span class="papyrus-symbol">𓅓</span>
+                    <span class="papyrus-number">Ⅳ</span>
+                </button>
+
+                <button class="papyrus" onclick="chooseOmikuji(5)">
+                    <span class="papyrus-symbol">☥</span>
+                    <span class="papyrus-number">Ⅴ</span>
+                </button>
+
+                <button class="papyrus" onclick="chooseOmikuji(6)">
+                    <span class="papyrus-symbol">𓆣</span>
+                    <span class="papyrus-number">Ⅵ</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- 結果表示画面 -->
+        <div id="result-screen">
+
+            <h2 id="result-title">
+                神々の神託
+            </h2>
+
+            <p id="result-message">
+                ここに神託が表示されます。
+            </p>
+        　    <div id="god-info">
+
+        <h3 id="god-name">
+            神について
+        </h3>
+
+        <p id="god-description">
+            ここに神の説明が表示されます。
+        </p>
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        /* 選択された関係性 */
+        let relationship = "";
+
+
+        /* おみくじの結果 */
+        const omikujiData = {
+
+            "恋人": [
+                {
+                    title: "ラーの神託",
+                    message: "まさしく運命の相手である。<br>恋人を大切にすれば素晴らしい関係が築けるだろう。"
+                },
+                {
+                    title: "ホルスの神託",
+                    message: "良い関係である。今の関係からさらに一歩進展すればもっと良い関係になるであろう。"
+                },
+                {
+                    title: "アヌビスの神託",
+                    message: "あと一歩な関係である。<br>互いに不満や遠慮していることなどがあるかもしれぬ。<br>互いに話し合うのがよい。"
+                }
+            ],
+
+
+            "失恋中": [
+                {
+                    title: "アテンの神託",
+                    message: "切り替えるのが大事である。<br>さすれば、次の恋も自然と訪れるであろう。"
+                },
+                {   title: "オシリスの神託",
+                    message: "時間をかけて受け入れるのである。<br>時間をかけて、未練を断ち切るのが大事である。"
+                },
+                {   title: "ネフティスの神託",
+                    message: "受け入れる必要はないのである。<br>苦悩して成長することも必要である。"
+                }
+            ],
+
+
+            "片思い": [
+                {
+                    title: "イシスの神託",
+                    message: "今すぐにでも思いを伝えるのである。<br>覚悟を決めれば悪い結果には転ばないであろう。"
+                },
+                {   title: "バステトの神託",
+                    message: "タイミングを見計らい、ここぞという場面で告白するのである。<br>汝にないものは勇気のみぞ"
+                },
+                {   title: "セトの神託",
+                    message:　"今はまだその時ではない。<br>もう少し関係性を深めてから挑戦するのがよい"
+                }
+            ],
+
+
+            "気になる人": [
+                {
+                    title: "ハトホルの神託",
+                    message: "汝が気にしている者はあちら側も気になっているだろう。<br>勇気を出して話しかけるのがよい"
+                },
+                {   title: "アメンの神託",
+                    message: "積極的に行くのが良い。<br>さすれば、相手もだんだんと気になってくるだろう。"
+                },
+                {   title: "セクメトの神託",
+                    message: "積極的に行き過ぎないのが良い。<br>強引に行けば相手に距離を置かれてしまうだろう。<br>ゆえに、じわじわと距離を詰めていくのが良い。"
+                }
+            ],
+
+
+            "元カレ/元カノ": [
+                {
+                    title: "オシリスの神託",
+                    message: "相手も復縁の機会をうかがっている可能性あり。<br>少しづつ距離感を戻していくのが良い"
+                },
+                {   title: "ネフティスの神託",
+                    message:"引きずるのもまた良し。<br>苦悩しながら次に切り替えるのが大事である。"
+                },
+                {   title: "アムミットの神託",
+                    message: "すぐ切り替えるのが良いだろう。<br>友達としての関係性が一番良い可能性がある。<br>友達として関係性を再構築するのが良い。"
+                }
+            ],
+
+
+            "好きな人はいない": [
+                {
+                    title: "アテンの神託",
+                    message: "これからすぐ運命の人に出会うやもしれぬ。<br>出会った際は猛アピールをするのが良いだろう。"
+                },
+                {   title: "ラーの神託",
+                    message: "心の底にはすでに好きな人がいるはずである。<br>自らの心に正直になってみるのが良いだろう。"
+                },
+                {   title: "トートの神託",
+                    message: "まだ汝が好きになるものはあらわれないだろう。<br>しかし、近いうちにそのようなものと出会うやもしれぬ。"
+                }
+            ]
+
+        };
+
+
+        /* 関係性を選択 */
+        function selectRelationship(selectedRelationship) {
+
+            relationship = selectedRelationship;
+
+            document.getElementById("relationship-screen").style.display = "none";
+
+            document.getElementById("omikuji-screen").style.display = "block";
+
+        }
+
+
+        /* パピルスを選択 */
+        function chooseOmikuji(number) {
+
+            const results = omikujiData[relationship];
+
+
+            const randomNumber = Math.floor(
+                Math.random() * results.length
+            );
+
+
+            const result = results[randomNumber];
+
+
+            document.getElementById("omikuji-screen").style.display = "none";
+
+
+            document.getElementById("result-screen").style.display = "block";
+
+
+            /* タイトルを表示 */
+            document.getElementById("result-title").textContent = result.title;
+
+
+            /* 神託を表示 */
+            document.getElementById("result-message").innerHTML = result.message;
+
+        }
+
+    </script>
+
+</body>
+</html>
