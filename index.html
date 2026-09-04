@@ -284,6 +284,24 @@ h2 {
     }
 
 }
+#god-image {
+
+    width: 250px;
+
+    max-width: 90%;
+
+    height: auto;
+
+    margin: 20px auto;
+
+    display: block;
+
+    border: 3px solid #d4af37;
+
+    box-shadow:
+        0 0 15px #000;
+
+}
 </style>
 
 </head>
@@ -390,16 +408,23 @@ h2 {
 
 
         <!-- 結果表示画面 -->
-        <div id="result-screen">
+<div id="result-screen">
 
-            <h2 id="result-title">
-                神々の神託
-            </h2>
+    <h2 id="result-title">
+        神々の神託
+    </h2>
 
-            <p id="result-message">
-                ここに神託が表示されます。
-            </p>
-        　    <div id="god-info">
+
+    <!-- 神の画像 -->
+    <img id="god-image" src="" alt="神の画像">
+
+
+    <p id="result-message">
+        ここに神託が表示されます。
+    </p>
+
+
+    <div id="god-info">
 
         <h3 id="god-name">
             神について
@@ -408,11 +433,10 @@ h2 {
         <p id="god-description">
             ここに神の説明が表示されます。
         </p>
-        </div>
-
 
     </div>
 
+</div>
 
     <script>
 
@@ -426,15 +450,25 @@ h2 {
             "恋人": [
                 {
                     title: "ラーの神託",
-                    message: "まさしく運命の相手である。<br>恋人を大切にすれば素晴らしい関係が築けるだろう。"
+                    message: "まさしく運命の相手である。<br>恋人を大切にすれば素晴らしい関係が築けるだろう。",
+                    godName: "ラー",
+                    godDescription: "古代エジプトを代表する太陽神。<br>宇宙とそこに生息するすべての神や人間の生命体の創造者。",
+                    godImage: "images/ra-.jpg"
                 },
                 {
                     title: "ホルスの神託",
-                    message: "良い関係である。今の関係からさらに一歩進展すればもっと良い関係になるであろう。"
+                    message: "良い関係である。今の関係からさらに一歩進展すればもっと良い関係になるであろう。",
+                    godName: "ホルス",
+                    godDescription: "ハヤブサの頭を持つファラオの守護神。<br>天空と王権を象徴する神。",
+                    godImage: "images/horus.jpg"
                 },
                 {
                     title: "アヌビスの神託",
-                    message: "あと一歩な関係である。<br>互いに不満や遠慮していることなどがあるかもしれぬ。<br>互いに話し合うのがよい。"
+                    message: "あと一歩な関係である。<br>互いに不満や遠慮していることなどがあるかもしれぬ。<br>互いに話し合うのがよい。",
+                    godName: "アヌビス",
+                    godDescription: "ジャッカルの頭を持つ死者の神。<br>死後の楽園へ入る資格があるかを試す者。",
+                    godImage: "images/anubis.jpg"
+
                 }
             ],
 
@@ -442,13 +476,25 @@ h2 {
             "失恋中": [
                 {
                     title: "アテンの神託",
-                    message: "切り替えるのが大事である。<br>さすれば、次の恋も自然と訪れるであろう。"
+                    message: "切り替えるのが大事である。<br>さすれば、次の恋も自然と訪れるであろう。",
+                    godName: "アテン",
+                    godDescription: "太陽円盤を象徴とする世界最古の類まれな唯一神。<br>その光と熱を万物の創造主・生命の源とした。",
+                    godImage: "images/aten.jpg"
+
                 },
                 {   title: "オシリスの神託",
-                    message: "時間をかけて受け入れるのである。<br>時間をかけて、未練を断ち切るのが大事である。"
+                    message: "時間をかけて受け入れるのである。<br>時間をかけて、未練を断ち切るのが大事である。",
+                    godName: "オシリス",
+                    godDescription: "ラー神によってファラオとして遣わされイシスとともにエジプトの最初の住民を統治した神。<br>賢く、聡明で、慈悲深い神",
+                    godImage: "images/oshiris.jpg"
+
                 },
                 {   title: "ネフティスの神託",
-                    message: "受け入れる必要はないのである。<br>苦悩して成長することも必要である。"
+                    message: "受け入れる必要はないのである。<br>苦悩して成長することも必要である。",
+                    godName: "ネフティス",
+                    godDescription: "亡くなったエジプト人の石棺を監視する葬儀の女神。<br>イシスに変装してオシリスを誘惑した",
+                    godImage: "images/nefteis.jpg"
+
                 }
             ],
 
@@ -456,13 +502,25 @@ h2 {
             "片思い": [
                 {
                     title: "イシスの神託",
-                    message: "今すぐにでも思いを伝えるのである。<br>覚悟を決めれば悪い結果には転ばないであろう。"
+                    message: "今すぐにでも思いを伝えるのである。<br>覚悟を決めれば悪い結果には転ばないであろう。",
+                    godName: "イシス",
+                    godDescription: "魔法と秘密の女神。オシリスの妹であり妻。",
+                    godImage: "images/ishis.jpg"
+
                 },
                 {   title: "バステトの神託",
-                    message: "タイミングを見計らい、ここぞという場面で告白するのである。<br>汝にないものは勇気のみぞ"
+                    message: "タイミングを見計らい、ここぞという場面で告白するのである。<br>汝にないものは勇気のみぞ",
+                    godName: "バステト",
+                    godDescription: "猫、喜び、そして「すべての楽しいこと」の女神。<br>すべての猫はバステトの化身であり、彼女は多くの恩恵を与えると評判だったため、崇拝されてきた。",
+                    godImage: "images/bastet.jpg"
+
                 },
                 {   title: "セトの神託",
-                    message:　"今はまだその時ではない。<br>もう少し関係性を深めてから挑戦するのがよい"
+                    message:　"今はまだその時ではない。<br>もう少し関係性を深めてから挑戦するのがよい",
+                    godName: "セト",
+                    godDescription: "混沌、嵐、砂漠の神。自分と頭の太陽を食べようとする蛇からラーを守るために、毎晩アペプと戦っている。",
+                    godImage: "images/set.jpg"
+
                 }
             ],
 
@@ -470,13 +528,25 @@ h2 {
             "気になる人": [
                 {
                     title: "ハトホルの神託",
-                    message: "汝が気にしている者はあちら側も気になっているだろう。<br>勇気を出して話しかけるのがよい"
+                    message: "汝が気にしている者はあちら側も気になっているだろう。<br>勇気を出して話しかけるのがよい",
+                    godName: "ハトホル",
+                    godDescription: "美、愛、喜びの女神。<br>ハトホルが喜ぶとバステトになり、怒るとセクメトになる。",
+                    godImage: "images/hathol.jpg"
+
                 },
                 {   title: "アメンの神託",
-                    message: "積極的に行くのが良い。<br>さすれば、相手もだんだんと気になってくるだろう。"
+                    message: "積極的に行くのが良い。<br>さすれば、相手もだんだんと気になってくるだろう。",
+                    godName: "アメン",
+                    godDescription: "エジプト文明末期にラーとともに創造神となった。<br>ラーは宇宙を構成するすべての鉱物を創造し、アメンは人間、動物、植物の生命を創造した",
+                    godImage: "images/amen.jpg"
+
                 },
                 {   title: "セクメトの神託",
-                    message: "積極的に行き過ぎないのが良い。<br>強引に行けば相手に距離を置かれてしまうだろう。<br>ゆえに、じわじわと距離を詰めていくのが良い。"
+                    message: "積極的に行き過ぎないのが良い。<br>強引に行けば相手に距離を置かれてしまうだろう。<br>ゆえに、じわじわと距離を詰めていくのが良い。",
+                    godName: "セクメト",
+                    godDescription: "ラーの命令でセクメトは地球上のすべての男性、女性、子供を虐殺する。",
+                    godImage: "images/sekumet.jpg"
+
                 }
             ],
 
@@ -484,13 +554,25 @@ h2 {
             "元カレ/元カノ": [
                 {
                     title: "オシリスの神託",
-                    message: "相手も復縁の機会をうかがっている可能性あり。<br>少しづつ距離感を戻していくのが良い"
+                    message: "相手も復縁の機会をうかがっている可能性あり。<br>少しづつ距離感を戻していくのが良い",
+                    godName: "オシリス",
+                    godDescription: "ラー神によってファラオとして遣わされイシスとともにエジプトの最初の住民を統治した神。<br>賢く、聡明で、慈悲深い神",
+                    godImage: "images/oshiris.jpg"
+
                 },
                 {   title: "ネフティスの神託",
-                    message:"引きずるのもまた良し。<br>苦悩しながら次に切り替えるのが大事である。"
+                    message:"引きずるのもまた良し。<br>苦悩しながら次に切り替えるのが大事である。",
+                    godName: "ネフティス",
+                    godDescription: "亡くなったエジプト人の石棺を監視する葬儀の女神。<br>イシスに変装してオシリスを誘惑した。",
+                    godImage: "images/nefteis.jpg"
+
                 },
                 {   title: "アムミットの神託",
-                    message: "すぐ切り替えるのが良いだろう。<br>友達としての関係性が一番良い可能性がある。<br>友達として関係性を再構築するのが良い。"
+                    message: "すぐ切り替えるのが良いだろう。<br>友達としての関係性が一番良い可能性がある。<br>友達として関係性を再構築するのが良い。",
+                    godName: "アムミット",
+                    godDescription: "アヌビスの近くに来た魂があまりにも罪深いと判断されると、魂を食らう神。<br>その後、魂は「永遠に忘れ去られる」ことになる。",
+                    godImage: "images/amumit.jpg"
+
                 }
             ],
 
@@ -498,13 +580,25 @@ h2 {
             "好きな人はいない": [
                 {
                     title: "アテンの神託",
-                    message: "これからすぐ運命の人に出会うやもしれぬ。<br>出会った際は猛アピールをするのが良いだろう。"
+                    message: "これからすぐ運命の人に出会うやもしれぬ。<br>出会った際は猛アピールをするのが良いだろう。",
+                    godName: "アテン",
+                    godDescription: "太陽円盤を象徴とする世界最古の類まれな唯一神。<br>その光と熱を万物の創造主・生命の源とした。",
+                    godImage: "images/aten.jpg"
+
                 },
                 {   title: "ラーの神託",
-                    message: "心の底にはすでに好きな人がいるはずである。<br>自らの心に正直になってみるのが良いだろう。"
+                    message: "心の底にはすでに好きな人がいるはずである。<br>自らの心に正直になってみるのが良いだろう。",
+                    godName: "ラー",
+                    godDescription: "古代エジプトを代表する太陽神。<br>宇宙とそこに生息するすべての神や人間の生命体の創造者。",
+                    godImage: "images/ra-.jpg"
+
                 },
                 {   title: "トートの神託",
-                    message: "まだ汝が好きになるものはあらわれないだろう。<br>しかし、近いうちにそのようなものと出会うやもしれぬ。"
+                    message: "まだ汝が好きになるものはあらわれないだろう。<br>しかし、近いうちにそのようなものと出会うやもしれぬ。",
+                    godName: "",
+                    godDescription: "トキの頭を持ち、象形文字とすべての科学の発明者であり、書記、知識、学問の神。",
+                    godImage: "images/tot.jpg"
+
                 }
             ]
 
@@ -550,6 +644,20 @@ h2 {
             /* 神託を表示 */
             document.getElementById("result-message").innerHTML = result.message;
 
+            /* 神の名前 */
+            document.getElementById("god-name").textContent =
+            "【" + result.godName + "とは】";
+
+
+            /* 神の説明 */
+            document.getElementById("god-description").textContent =
+            result.godDescription;
+
+/* 神の画像 */
+document.getElementById("god-image").src = result.godImage;
+
+document.getElementById("god-image").alt =
+    result.godName + "の画像";
         }
 
     </script>
